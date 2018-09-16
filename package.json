@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "client:install": "cd client && npm install",
     "client": "npm start --prefix client"
   },
   "author": "Ayako Sayama",

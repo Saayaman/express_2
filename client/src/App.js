@@ -29,8 +29,11 @@ class App extends Component {
 
   handleSubmit = () => {
     const { age, name } = this.state;
-     axios({url: "api/students", method: 'POST', data: {"name": name, "age": age}}).then(res => {
-      console.log('resPost', res);
+     axios({
+       url: "api/students",
+       method: 'POST',
+       data: {"name": name, "age": age
+     }}).then(res => {
       this.setState({
         students: this.state.students.push(res.data),
       });

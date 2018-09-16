@@ -3,7 +3,6 @@ const dbConfig = require('../config/keys.js').mongoURI;
 
 const MongoClient = mongo.MongoClient;
 
-
 module.exports = function(app) {
   if (typeof dbConfig !== 'string') {
     throw new TypeError('Error: Unexpected mongodb connection url');

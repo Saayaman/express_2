@@ -18,12 +18,10 @@ router.post('/students', async (req, res) => {
 
   try {
     const db = req.db;
-    console.log("im body", req.body)
     db.collection('students').insertOne({...req.body}).then(response => {
-      console.log("im response", response.ops[0])
       res.json(response.ops[0])
     })
-    
+
   } catch(e){
     console.log(e)
   }
