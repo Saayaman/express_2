@@ -6,32 +6,63 @@ import './App.css';
 class App extends Component {
 
   state = {
-    users: [],
+    name: '',
+    age: null,
+    students: [],
   }
 
   componentDidMount() {
     axios.get("/api/students")
       .then(res => {
-        // const { user } = res.data;
-        console.log('res', res);
-      //   this.setState({
-      //     user,
-      // });
+        this.setState({
+          students: res.data,
+      });
+    });
+  }
+
+  onChange = (e) => {
+    console.log('changed log', e.target.value);
+    this.setState({
+      [e.target.name]: e.target.value
     })
   }
 
+  handleSubmit = () => {
+    const { age, name } = this.state;
+     axios({url: "api/students", method: 'POST', data: {"name": name, "age": age}}).then(res => {
+      console.log('resPost', res);
+      this.setState({
+        students: this.state.students.push(res.data),
+      });
+    });
+  }
+
   render() {
-    const { user } = this.state;
+    const { students } = this.state;
     return (
       <div className="App">
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">{user.name}</h1>
+        <header className="App-header">
+          <form onSubmit={this.handleSubmit} >
+            <div className="form-label">
+              <label htmlFor="name">Enter username</label>
+              <input id="name" name="name" type="text" onChange={this.onChange} />
+            </div>
+            <div className="form-label">
+              <label htmlFor="age">Enter your age</label>
+              <input id="age" name="age" type="text" onChange={this.onChange} />
+            </div>
+            <button>Send data!</button>
+          </form>
         </header>
-        <p className="App-intro">
-          {user.age} years old. Occupation: {user.occupation}
-        </p> */}
-        His
+        {
+          students.map(student =>
+            <ul key={student.name}>
+              <li className="App-intro">
+                Name: {student.name}, Age: {student.age}
+              </li>
+            </ul>
+          )
+        }
       </div>
     );
   }
