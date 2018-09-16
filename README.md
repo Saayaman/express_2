@@ -9,7 +9,7 @@
 and add the new database url from mlabs like below, and replace the <> with your information
 
 module.exports = {
-  "mongoURI": 'mongodb://<user_name>:<password>@ds255282.mlab.com:55282/<database_name>'
+  "mongoURI": 'mongodb://<user_name>:<password>@ds111111.mlab.com:11111/<database_name>'
 }
 
 - Run `yarn start` to run node server
